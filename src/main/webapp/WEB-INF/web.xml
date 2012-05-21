@@ -1,0 +1,38 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+
+  <display-name>RDF Validator</display-name>
+  <description>
+    This is the friggin' RDF Validator
+  </description>
+
+  <servlet>
+    <servlet-name>RDFValidatorServlet</servlet-name>
+    <servlet-class>org.w3c.rdfvalidator.ARPServlet</servlet-class>
+    <init-param>
+      <param-name>SERVLET_TMP_DIR</param-name>
+      <param-value>RDFValidator/ARPServlet.tmp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>BITMAPPED_FONT</param-name>
+      <param-value>cyberbit</param-value> <!-- might try cyberbit, ariel, arialuni -->
+    </init-param>
+    <init-param>
+      <param-name>VECTOR_FONT</param-name>
+      <param-value>Courier</param-value> <!-- might try Courier, arialuni -->
+    </init-param>
+    <init-param>
+      <param-name>RENDER_DOT</param-name>
+      <param-value>RDFValidator/renderDot</param-value>
+    </init-param>
+    <init-param>
+      <param-name>LOG_A_LOT</param-name>
+      <param-value>1</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RDFValidatorServlet</servlet-name>
+    <url-pattern>/rdfval</url-pattern>
+  </servlet-mapping>
+
+</web-app>

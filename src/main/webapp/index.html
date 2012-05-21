@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <title>W3C RDF Validation Service</title>
+  <link rel="stylesheet" href="http://validator.w3.org/base.css" type="text/css" />
+  <style type="text/css">
+  #menu li { color: white;}
+  </style>
+</head>
+
+<body>
+
+
+   <div id="banner">
+      <h1 id="title">
+	<a href="http://www.w3.org/"><!-- img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" / --></a>
+    <a href="http://www.w3.org/RDF/" title="RDF (Resource Description Framework)"><!-- img src="http://www.w3.org/RDF/icons/rdf_powered_button.48" alt="RDF" / --></a> 
+    Validation Service</h1>
+    </div>
+    <ul class="navbar" id="menu">
+    
+        <li><span class="hideme"><a href="#skip" accesskey="2" title="Skip past navigation to main part of page">Skip Navigation</a> |</span>
+        <strong><a href="">Home</a></strong></li>
+        <li><a href="documentation" accesskey="3" title="Documentation for this Service">Documentation</a></li>
+        <li><a href="documentation#feedback" accesskey="4" title="How to provide feedback on this service">Feedback</a></li>
+    </ul>
+
+<div id="main"><!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+
+
+<h2 id="service">Check and Visualize your RDF documents</h2>
+      <p><a href="hello">olde servlet</a></p>
+<p>Enter a URI or paste an RDF/XML document into the text field above.
+A 3-tuple (triple) representation of the corresponding data model as well as
+an optional graphical visualization of the data model will be displayed.</p>
+
+<fieldset class="front" id="validate-by-direct">
+<legend>Check by Direct Input</legend>
+<form method="post" action="rdfval" id="myform_direct">
+<p>  <textarea cols="70" rows="10" name="RDF">&lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;
+  &lt;rdf:Description rdf:about="http://www.w3.org/"&gt;
+    &lt;dc:title&gt;World Wide Web Consortium&lt;/dc:title&gt; 
+  &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+  </textarea><br />
+  <input type="submit" value="Parse RDF" name="PARSE" /> 
+  <input type="reset" value="Restore the original example" name="Reset" /> 
+  <input type="button" value="Clear the textarea"
+  onclick="document.myform_direct.RDF.value=''" /> 
+</p>
+<p><strong>Display Result Options</strong>:<br />
+  Triples and/or Graph: 
+  <select name="TRIPLES_AND_GRAPH">
+    <option value="PRINT_TRIPLES">Triples Only</option>
+    <option value="PRINT_BOTH">Triples and Graph</option>
+    <option value="PRINT_GRAPH">Graph Only</option>
+  </select><br />
+   Graph format: 
+  <select name="FORMAT">
+    <option value="PNG_EMBED" selected="selected">PNG - embedded</option>
+    <option value="PNG_LINK">PNG - link</option>
+    <option value="ISV_ZVTM">IsaViz/ZVTM (Dynamic View - requires Java Plug-in 1.3 or later)</option>
+    <option value="SVG_LINK">SVG - link</option>
+    <option value="SVG_EMBED">SVG - embedded (requires an SVG plug-in)</option>
+    <option value="GIF_EMBED">GIF - embedded</option>
+    <option value="GIF_LINK">GIF - link</option>
+    <option value="PS_LINK">PostScript - link</option>
+    <option value="HP_PCL_LINK">HPGL/2 with PCL-5 (Laserwriter) -
+    link</option>
+    <option value="HP_GL_LINK">HPGL (pen plotters) - link</option>
+  </select>
+  </p>
+<p>Paste an RDF/XML document into the following text field to have it checked. 
+More options are available in the <a href="direct">Extended interface</a>.</p>
+
+  </form>
+   </fieldset>
+   
+ <fieldset class="front" id="validate-by-uri"><legend>Check by URI</legend>
+  <form method="get" action="/rdfval" id="myform_uri">  
+   <p>
+   <input type="text" size="50" name="URI" maxlength="800" value="" /> 
+   <input type="submit" value="Parse URI: " name="PARSE" />
+   <input type="button" value="Clear the URI" onclick="document.myform_uri.URI.value=''" /> 
+   </p>
+    <p><strong>Display Result Options</strong>:<br />
+  Triples and/or Graph: 
+  <select name="TRIPLES_AND_GRAPH">
+    <option value="PRINT_TRIPLES">Triples Only</option>
+    <option value="PRINT_BOTH">Triples and Graph</option>
+    <option value="PRINT_GRAPH">Graph Only</option>
+  </select><br />
+   Graph format: 
+  <select name="FORMAT">
+    <option value="PNG_EMBED" selected="selected">PNG - embedded</option>
+    <option value="PNG_LINK">PNG - link</option>
+    <option value="ISV_ZVTM">IsaViz/ZVTM (Dynamic View - requires Java Plug-in 1.3 or later)</option>
+    <option value="SVG_LINK">SVG - link</option>
+    <option value="SVG_EMBED">SVG - embedded (requires an SVG plug-in)</option>
+    <option value="GIF_EMBED">GIF - embedded</option>
+    <option value="GIF_LINK">GIF - link</option>
+    <option value="PS_LINK">PostScript - link</option>
+    <option value="HP_PCL_LINK">HPGL/2 with PCL-5 (Laserwriter) -
+    link</option>
+    <option value="HP_GL_LINK">HPGL (pen plotters) - link</option>
+  </select>
+  </p>
+<p>Enter the URI for the RDF/XML document you would like to check.
+More options are available in the <a href="uri">Extended interface</a>.</p>
+  </form>
+   </fieldset>
+
+
+
+
+ </div><!-- End of "main" DIV. -->
+
+<address>
+      <a href="./check?uri=referer"><!-- img
+        src="http://www.w3.org/Icons/valid-xhtml10" height="31" width="88"
+        alt="Valid XHTML 1.0!" / --></a>
+      <!-- hhmts start -->Last modified $Date: 2006/02/28 16:30:38 $<!-- hhmts end -->
+        <br />
+        <a href="/People/Eric/">Eric Prud'hommeaux</a>     </address>
+
+
+</body>
+</html>
