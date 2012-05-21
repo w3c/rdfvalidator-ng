@@ -5,7 +5,7 @@ import WebPlugin._
 import PluginKeys._
 
 /**
- * build configuration for rdf-validator-ng
+ * build configuration for rdfvalidator-ng
  *
  * it relies on:
  * - xsbt-web-plugin. see https://github.com/siasia/xsbt-web-plugin
