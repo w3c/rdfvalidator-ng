@@ -35,4 +35,19 @@
     <url-pattern>/rdfval</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>StaticContent</servlet-name>
+    <servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
+    <init-param>
+      <param-name>resourceBase</param-name>
+      <param-value>RDFValidator</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>StaticContent</servlet-name>
+    <url-pattern>/ARPServlet.tmp/*</url-pattern>
+  </servlet-mapping>
+
 </web-app>

@@ -11,6 +11,7 @@ import PluginKeys._
  * - xsbt-web-plugin. see https://github.com/siasia/xsbt-web-plugin
  * - Jena 2.9.0
  * - Jetty 8.x and Java Servlet 2.5
+ * - slf4j for logging
  */
 object RDFValidatorNGBuild extends Build {
 
@@ -29,8 +30,8 @@ object RDFValidatorNGBuild extends Build {
       libraryDependencies += "org.apache.jena" % "jena-arq" % "2.9.0-incubating",
       libraryDependencies += "com.fasterxml" % "aalto-xml" % "0.9.7",
       libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "8.0.1.v20110908" % "compile,container",
-//      libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "7.6.0.v20120127" % "compile,container",
-      libraryDependencies += "javax.servlet" % "servlet-api" % "2.5" % "provided"
+      libraryDependencies += "javax.servlet" % "servlet-api" % "2.5" % "provided",
+      libraryDependencies += "org.slf4j" % "slf4j-log4j12" % "1.6.4"
     )
   )
 
