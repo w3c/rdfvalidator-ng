@@ -43,6 +43,10 @@
       <param-name>resourceBase</param-name>
       <param-value>RDFValidator</param-value>
     </init-param>
+    <init-param>
+      <param-name>dirAllowed</param-name>
+      <param-value>false</param-value>
+    </init-param>
   </servlet>
 
   <servlet-mapping>
