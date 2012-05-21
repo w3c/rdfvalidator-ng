@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Example parameters:
+# -Tpng \
+# /usr/share/jetty/webapps/RDFValidator/ARPServlet.tmp/servlet_35684.png \
+# /usr/share/jetty/webapps/RDFValidator/ARPServlet.tmp/servlet_35683.dot
+
+# Dot files are automagically removed. If you want to catch them, put
+# in something like: $(cp $3 /tmp)
+
+# I haven't seen any evidence that dot still pays attention to DOTFONTPATH.
+DOTFONTPATH=/usr/X11R6/lib/X11/fonts/misc
+export DOTFONTPATH
+
+#integers only because shell stinks at math
+load_limit=5
+dot_limit=10
+
+load=`cat /proc/loadavg | cut -f 1 -d' ' | sed -e 's/\..*//'`
+dots=`ps wwaux | grep dot | egrep -v '(dotty|grep)' | wc -l`
+swapfree=`grep SwapFree /proc/meminfo | sed -e 's/.*: *//' -e 's/ .*//'`
+swaptotal=`grep SwapTotal /proc/meminfo | sed -e 's/.*: *//' -e 's/ .*//'`
+
+#check our load threshold or see if there is any swapping
+if [ $dots -gt $dot_limit ] || [ $load -gt $load_limit ] ; then
+#taking out swap test for now, replace later with swap amount limit
+# || [ $swapfree -ne $swaptotal ] ; then
+    timestamp=`date +%Y%m%d.%H:%M:%S`
+    echo "$timestamp dots $dots load $load swap $swapfree / $swaptotal" >> /tmp/dotlog
+    #from sysexits.h, to trap inside of servlet
+    #define EX_TEMPFAIL	75	/* temp failure; user is invited to retry */
+    exit 75
+fi
+
+#ulimits for dot
+
+ulimit -n 16
+ulimit -t 120
+ulimit -f 4096
+ulimit -m 51200
+
+/usr/bin/dot $1 -o $2 $3

@@ -20,3 +20,4 @@ sbt-launch*.jar
 bin
 .ensime
 *.egp
+RDFValidator
