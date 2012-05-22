@@ -10,7 +10,7 @@ How to start geeking
 
 You only a recent version of Java. If you want to generate images for the graphs you provide, please install GraphViz.
 
-    $ git clone git://github.com/betehess/rdfvalidator-ng.git
+    $ git clone git://github.com/w3c/rdfvalidator-ng.git
     $ cd rdfvalidator-ng/
     $ ./sbt run
 
