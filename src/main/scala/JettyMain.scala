@@ -11,7 +11,7 @@ object JettyMain {
   def main(args: Array[String]) = {
     val server: Server = new Server
 
-    server setGracefulShutdown 5000
+    server setGracefulShutdown 500
     server setSendServerVersion false
     server setSendDateHeader true
     server setStopAtShutdown true

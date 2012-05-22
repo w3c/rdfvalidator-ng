@@ -1415,7 +1415,7 @@ public class ARPServlet extends HttpServlet
         if (r.isAnonymous())
             return ANON_NODE + r.getAnonymousID();
         else
-            return "<a href='" + r.getURI() + "'>" + r.getURI() + "</a>";
+            return "<a href='" + r.getURI().replaceAll("\"", "&quot;").replaceAll("'", "&apos;") + "'>" + r.getURI().replaceAll("<", "&lt;") + "</a>";
     }
 
     /*
@@ -1925,7 +1925,7 @@ public class ARPServlet extends HttpServlet
 		    throw new getRDFException("The URI may not exist or the server is down.@@");
 	    } catch (getRDFException e) {
 		out.println("<h1>RDF Load Error</h1>");
-		out.println("An attempt to load the RDF from URI '" + sURI +
+		out.println("An attempt to load the RDF from URI '" + sURI.replace("<", "&lt;") +
 			    "' failed.  (" + e.getMessage() + ")");
 		printDocumentFooter(out, null);
 		return;
