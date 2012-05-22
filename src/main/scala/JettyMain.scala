@@ -9,6 +9,9 @@ import org.eclipse.jetty.servlet.{ DefaultServlet, ServletContextHandler, Servle
 object JettyMain {
   
   def main(args: Array[String]) = {
+
+    val port = args.toList.headOption.getOrElse("8080").toInt
+
     val server: Server = new Server
 
     server setGracefulShutdown 500
@@ -17,7 +20,7 @@ object JettyMain {
     server setStopAtShutdown true
 
     val connector = new SelectChannelConnector
-    connector setPort 8080
+    connector setPort port
     connector setMaxIdleTime 90000
     server addConnector connector
 
