@@ -10,9 +10,12 @@ How to start geeking
 
 You only a recent version of Java. If you want to generate images for the graphs you provide, please install GraphViz.
 
-    $ git clone git://github.com/w3c/rdfvalidator-ng.git
-    $ cd rdfvalidator-ng/
-    $ ./sbt run
+```bash
+git clone git://github.com/w3c/rdfvalidator-ng.git
+cd rdfvalidator-ng/
+./sbt assembly
+java -jar target/rdf-validator.jar 8080
+```
 
 Then you can go to [http://localhost:8080](http://localhost:8080).
 
