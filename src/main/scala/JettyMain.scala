@@ -8,29 +8,29 @@ import org.eclipse.jetty.servlet.{ DefaultServlet, ServletContextHandler, Servle
 
 object JettyMain {
   
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
 
     val port = args.toList.headOption.getOrElse("8080").toInt
 
     val server: Server = new Server
 
-    server setGracefulShutdown 500
-    server setSendServerVersion false
-    server setSendDateHeader true
-    server setStopAtShutdown true
+    server.setGracefulShutdown(500)
+    server.setSendServerVersion(false)
+    server.setSendDateHeader(true)
+    server.setStopAtShutdown(true)
 
     val connector = new SelectChannelConnector
-    connector setPort port
-    connector setMaxIdleTime 90000
-    server addConnector connector
+    connector.setPort(port)
+    connector.setMaxIdleTime(90000)
+    server.addConnector(connector)
 
     val webapp = "src/main/webapp"
     val webApp = new WebAppContext
-    webApp setContextPath "/"
-    webApp setResourceBase webapp
-    webApp setDescriptor (webapp+"/WEB-INF/web.xml");
+    webApp.setContextPath("/")
+    webApp.setResourceBase(webapp)
+    webApp.setDescriptor(webapp + "/WEB-INF/web.xml")
 
-    server setHandler webApp
+    server.setHandler(webApp)
 
     server.start()
   }
