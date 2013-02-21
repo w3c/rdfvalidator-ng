@@ -19,6 +19,8 @@ java -jar target/rdf-validator.jar 8080
 
 Then you can go to [http://localhost:8080](http://localhost:8080).
 
+Note: we made a bundle available at https://www.w3.org/2013/02/rdf-validator.jar .
+
 Licence
 -------
 
