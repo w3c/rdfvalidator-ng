@@ -15,7 +15,7 @@ object RDFValidatorNGBuild extends Build {
     settings = Defaults.defaultSettings ++ assemblySettings ++ Seq(
       organization := "org.w3",
       version := "1.0-SNAPSHOT",
-      scalaVersion := "2.10.0",
+      scalaVersion := "2.10.1",
       javacOptions ++= Seq("-Xlint:unchecked"),
       mainClass in assembly := Some("org.w3.rdfvalidator.JettyMain"),
       jarName in assembly := "rdf-validator.jar",
