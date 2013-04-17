@@ -3,9 +3,9 @@
 dir=$(dirname $0)
 cd "$dir"
 
-url="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.12.1/sbt-launch.jar"
+url="http://scalasbt.artifactoryonline.com/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.12.3/sbt.zip"
 
-sbt="sbt-launch-0.12.1.jar"
+sbt="sbt-launch-0.12.3.jar"
 
 # set the right tool to download sbt
 if [ -n "$tool" ]; then
@@ -26,10 +26,14 @@ fi
 if [ ! -f "$sbt" ]; then
     case "$tool" in
         "wget"*)
-            wget "$url" -O "./$sbt"
+            wget "$url" -O ./sbt.zip
+            unzip -p sbt.zip sbt/bin/sbt-launch.jar > "./$sbt"
+            rm -f ./sbt.zip
             ;;
         "curl"*)
-            curl "$url" -o "./$sbt"
+            curl "$url" -o ./sbt.zip
+            unzip -p sbt.zip sbt/bin/sbt-launch.jar > "./$sbt"
+            rm -f ./sbt.zip
             ;;
         *)
             echo "don't know this tool: $tool"
@@ -38,5 +42,5 @@ if [ ! -f "$sbt" ]; then
 fi
 
 # tweak this line according to your needs
-java $SBT_PROPS -Xmx512M -jar -Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m "$dir/$sbt" "$@"
+java $SBT_PROPS -jar -Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m "$dir/$sbt" "$@"
 
