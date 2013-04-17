@@ -35,6 +35,10 @@
     <url-pattern>/rdfval</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>RDFValidatorServlet</servlet-name>
+    <url-pattern>/ARPServlet</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>StaticContent</servlet-name>
