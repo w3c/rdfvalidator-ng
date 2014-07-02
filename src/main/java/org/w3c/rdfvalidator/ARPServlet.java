@@ -186,6 +186,7 @@ import java.util.regex.*;
 
 // http://www.hpl.hp.co.uk/people/jjc/arp/apidocs/index.html
 import com.hp.hpl.jena.rdf.arp.*; 
+import com.hp.hpl.jena.rdf.arp.impl.RDFXMLParser;
 
 public class ARPServlet extends HttpServlet
 {
@@ -1983,6 +1984,18 @@ public class ARPServlet extends HttpServlet
         parser.getHandlers().setStatementHandler(sh);
         parser.getOptions().setEmbedding(embedded);
 	parser.getOptions().setStrictErrorMode();
+
+        try {
+            java.lang.reflect.Field arpfField = parser.getClass().getDeclaredField("arpf");
+            arpfField.setAccessible(true);
+            RDFXMLParser arpf = (RDFXMLParser) arpfField.get(parser);
+            java.lang.reflect.Field saxParserField = arpf.getClass().getDeclaredField("saxParser");
+            saxParserField.setAccessible(true);
+            org.apache.xerces.parsers.SAXParser saxParser = (org.apache.xerces.parsers.SAXParser) saxParserField.get(arpf);
+            saxParser.setFeature("http://xml.org/sax/features/external-general-entities", false);
+        } catch (NoSuchFieldException|IllegalAccessException|SAXException e) {
+            throw new RuntimeException("should not be here");
+        }
 
         if (printTriples)
             printTripleTableHeader (outtmp, nTriples);
