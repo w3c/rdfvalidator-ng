@@ -8,18 +8,16 @@ RDFValidator-NG is basically the code at [http://dev.w3.org/cvsweb/java/classes/
 How to start geeking
 --------------------
 
-You only a recent version of Java. If you want to generate images for the graphs you provide, please install GraphViz.
+You only a recent version of Java (tested with Java 8). If you want to generate images for the graphs you provide, please install GraphViz. You'll also need a recent version of [sbt](https://github.com/paulp/sbt-extras).
 
 ```bash
 git clone git://github.com/w3c/rdfvalidator-ng.git
-cd rdfvalidator-ng/
-./sbt assembly
-java -jar target/rdf-validator.jar 8080
+cd rdfvalidator-ng
+sbt assembly
+java -jar target/scala-2.11/rdf-validator.jar 8080
 ```
 
 Then you can go to [http://localhost:8080](http://localhost:8080).
-
-Note: we made a bundle available at https://www.w3.org/2013/02/rdf-validator.jar .
 
 Licence
 -------
