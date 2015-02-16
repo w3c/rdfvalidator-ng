@@ -22,12 +22,11 @@ object RDFValidatorNGBuild extends Build {
       test in assembly := {},
       assemblyMergeStrategy in assembly <<= (assemblyMergeStrategy in assembly) {
         val fs = System.getProperty("file.separator")
-        (old) =>
-          {
-            case r if r.endsWith("about.html") => MergeStrategy.discard
-            case r if r.startsWith(List("javax", "xml", "stream").mkString(fs)) => MergeStrategy.concat
-            case x => old(x)
-          }
+        (old) => {
+          case r if r.endsWith("about.html") => MergeStrategy.discard
+          case r if r.startsWith(List("javax", "xml", "stream").mkString(fs)) => MergeStrategy.concat
+          case x => old(x)
+        }
       },
       resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
       resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",

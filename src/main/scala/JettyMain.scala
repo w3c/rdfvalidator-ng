@@ -1,7 +1,8 @@
-package org.w3.rdfvalidator
+package org.w3
+package rdfvalidator
 
 import org.eclipse.jetty.server.nio.SelectChannelConnector
-import org.eclipse.jetty.server.{ Server }
+import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.handler.ContextHandlerCollection
 import org.eclipse.jetty.webapp.WebAppContext
 import org.eclipse.jetty.servlet.{ DefaultServlet, ServletContextHandler, ServletHolder }
@@ -10,7 +11,7 @@ object JettyMain {
   
   def main(args: Array[String]): Unit = {
 
-    val port = args.toList.headOption.getOrElse("8080").toInt
+    val port = args.headOption.map(_.toInt).getOrElse(8080)
 
     val server: Server = new Server
 
