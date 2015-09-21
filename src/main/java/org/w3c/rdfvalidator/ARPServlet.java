@@ -188,6 +188,9 @@ import java.util.regex.*;
 import com.hp.hpl.jena.rdf.arp.*; 
 import com.hp.hpl.jena.rdf.arp.impl.RDFXMLParser;
 
+import com.sun.net.ssl.internal.www.protocol.https.*;
+import java.security.Security;
+
 public class ARPServlet extends HttpServlet
 {
     final static public String	REVISION = "$Id: ARPServlet.java,v 1.5 2006/09/17 23:43:32 ted Exp $";
@@ -354,6 +357,10 @@ public class ARPServlet extends HttpServlet
 	   File ff = new File(uri);
 	   in = new FileInputStream(ff);
 	*/
+
+        System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+	
 	URL url = null;
 	try {
 	    url = new URL(uri);
